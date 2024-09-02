@@ -13,7 +13,7 @@ class CreateSalasTable extends Migration
             $table->string('naziv');
             $table->integer('broj_sedista');
             $table->string('lokacija')->nullable();
-            $table->string('vrsta_sale')->nullable();
+            $table->string('vrstasale')->nullable();
             $table->text('oprema')->nullable();
             $table->boolean('dostupnost')->default(true);
             $table->text('napomena')->nullable();
