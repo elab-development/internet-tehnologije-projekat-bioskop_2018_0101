@@ -19,7 +19,7 @@ class FilmFactory extends Factory
             'glumci' => $this->faker->words(3, true),
             'godina_izdanja' => $this->faker->year,
             'jezik' => $this->faker->languageCode,
-            'ocena' => $this->faker->randomFloat(1, 1, 10),
+            'ocena' => $this->faker->randomFloat(1, 1, 9.9),
             'poster_url' => $this->faker->imageUrl,
             'trailer_url' => $this->faker->url,
         ];
