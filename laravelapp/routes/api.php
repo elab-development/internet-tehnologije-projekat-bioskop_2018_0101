@@ -2,12 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\AuthController;
- 
+use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\SalaController;
+use App\Http\Controllers\ProjekcijaController;
 
+Route::apiResource('projekcije', ProjekcijaController::class);
 Route::apiResource('sale', SalaController::class);
 Route::get('/films', [FilmController::class, 'index']);
 Route::get('/films/{id}', [FilmController::class, 'show']);
