@@ -6,6 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\SalaController;
 use App\Http\Controllers\ProjekcijaController;
+ 
+
+Route::get('/films/export', [FilmController::class, 'exportCsv']);
 
 Route::apiResource('projekcije', ProjekcijaController::class);
 Route::apiResource('sale', SalaController::class);

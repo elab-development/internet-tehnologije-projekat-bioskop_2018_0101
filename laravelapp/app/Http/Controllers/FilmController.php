@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\FilmResource;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FilmController extends Controller
 {
@@ -123,4 +124,48 @@ class FilmController extends Controller
 
         return response()->json(['message' => 'Film deleted successfully'], 200);
     }
+     // Generisanje CSV fajla sa svim filmovima
+     public function exportCsv()
+     {
+         // Dohvatanje svih filmova iz baze podataka
+         $films = Film::all();
+ 
+         // Generisanje CSV podataka u memoriji
+         $csvData = [];
+ 
+         // Header red
+         $csvData[] = ['Naziv', 'Žanr', 'Trajanje', 'Opis', 'Režiser', 'Glumci', 'Godina Izdanja', 'Jezik', 'Ocena', 'Poster URL', 'Trailer URL'];
+ 
+         // Popunjavanje CSV podataka
+         foreach ($films as $film) {
+             $csvData[] = [
+                 $film->naziv,
+                 $film->zanr,
+                 $film->trajanje,
+                 $film->opis,
+                 $film->reziser,
+                 $film->glumci,
+                 $film->godina_izdanja,
+                 $film->jezik,
+                 $film->ocena,
+                 $film->poster_url,
+                 $film->trailer_url,
+             ];
+         }
+ 
+         // Kreiranje StreamedResponse za download CSV fajla
+         $response = new StreamedResponse(function () use ($csvData) {
+             $handle = fopen('php://output', 'w');
+             foreach ($csvData as $row) {
+                 fputcsv($handle, $row);
+             }
+             fclose($handle);
+         });
+ 
+         // Postavljanje headera za CSV
+         $response->headers->set('Content-Type', 'text/csv');
+         $response->headers->set('Content-Disposition', 'attachment; filename="svi_filmovi.csv"');
+ 
+         return $response;
+     }
 }
