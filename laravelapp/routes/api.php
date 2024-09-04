@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
  
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\SalaController;
 
+Route::apiResource('sale', SalaController::class);
 Route::get('/films', [FilmController::class, 'index']);
 Route::get('/films/{id}', [FilmController::class, 'show']);
 Route::post('/films', [FilmController::class, 'store']);
