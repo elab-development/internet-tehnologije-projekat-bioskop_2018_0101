@@ -10,12 +10,44 @@ use App\Http\Resources\FilmResource;
 
 class FilmController extends Controller
 {
-    // Prikaz svih filmova
-    public function index()
+    // Prikaz svih filmova sa mogućnošću pretrage
+    public function index(Request $request)
     {
-        $films = Film::all();
+        // Preuzimamo sve parametre za pretragu
+        $query = Film::query();
+
+        // Provera parametara i dodavanje filtera
+        if ($request->has('naziv')) {
+            $query->where('naziv', 'like', '%' . $request->input('naziv') . '%');
+        }
+
+        if ($request->has('zanr')) {
+            $query->where('zanr', 'like', '%' . $request->input('zanr') . '%');
+        }
+
+        if ($request->has('godina_izdanja')) {
+            $query->where('godina_izdanja', $request->input('godina_izdanja'));
+        }
+
+        if ($request->has('jezik')) {
+            $query->where('jezik', 'like', '%' . $request->input('jezik') . '%');
+        }
+
+        if ($request->has('reziser')) {
+            $query->where('reziser', 'like', '%' . $request->input('reziser') . '%');
+        }
+
+        if ($request->has('ocena')) {
+            $query->where('ocena', '>=', $request->input('ocena'));
+        }
+
+        // Dobavljanje rezultata
+        $films = $query->get();
+
+        // Vraćamo kolekciju filmova kao resurs
         return FilmResource::collection($films);
     }
+
 
     // Prikaz jednog filma
     public function show($id)
