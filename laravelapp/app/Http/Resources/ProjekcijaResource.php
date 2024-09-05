@@ -16,9 +16,9 @@ class ProjekcijaResource extends JsonResource
         return [
             'id' => $this->id,
             'film_id' => $this->film_id,
-            'film' => new FilmResource($this->whenLoaded('film')), // Prikazivanje informacija o filmu ako su učitane
+            'film' => new FilmResource($this->film), // Prikazivanje informacija o filmu ako su učitane
             'sala_id' => $this->sala_id,
-            'sala' => new SalaResource($this->whenLoaded('sala')), // Prikazivanje informacija o sali ako su učitane
+            'sala' => new SalaResource($this->sala ), // Prikazivanje informacija o sali ako su učitane
             'datum_vreme' => $this->datum_vreme,
             'cena' => $this->cena,
             'broj_slobodnih_mesta' => $this->broj_slobodnih_mesta,

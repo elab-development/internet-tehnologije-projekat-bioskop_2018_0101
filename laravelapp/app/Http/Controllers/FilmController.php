@@ -70,9 +70,9 @@ class FilmController extends Controller
             'glumci' => 'nullable|string',
             'godina_izdanja' => 'required|integer|min:1800|max:' . date('Y'),
             'jezik' => 'required|string|max:100',
-            'ocena' => 'nullable|numeric|min:0|max:10',
-            'poster_url' => 'nullable|url',
-            'trailer_url' => 'nullable|url',
+            'ocena' => 'required|numeric|min:0|max:10',
+            'poster_url' => 'required|url',
+            'trailer_url' => 'required|url',
         ]);
 
         if ($validator->fails()) {
