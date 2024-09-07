@@ -5,6 +5,7 @@ import Slider from './Slider';
 import AdminProjekcije from './AdminProjekcije';
 import LoginForm from './LoginForm';  
 import './App.css';
+import RegisterForm from './RegistrationForm';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         
           <Route path="/projekcije" element={<AdminProjekcije />} />
 
+          <Route path="/register" element={<RegisterForm />} />
          
           <Route path="/login" element={<LoginForm />} />
           
