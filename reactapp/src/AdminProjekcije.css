@@ -55,3 +55,40 @@
     text-align: center;
   }
   
+  /* Paginacija */
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-controls button {
+    background-color: #ed1c24;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls span {
+    font-size: 1rem;
+  }
+  
+  /* Pretraga */
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
