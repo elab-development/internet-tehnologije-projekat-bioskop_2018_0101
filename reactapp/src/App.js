@@ -1,16 +1,30 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  
 import Navbar from './Navbar';
 import Slider from './Slider';
-import './App.css';
 import AdminProjekcije from './AdminProjekcije';
+import LoginForm from './LoginForm';  
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Slider />
-      <AdminProjekcije />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+         
+          <Route path="/" element={<Slider />} />
+
+        
+          <Route path="/projekcije" element={<AdminProjekcije />} />
+
+         
+          <Route path="/login" element={<LoginForm />} />
+          
+         
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
