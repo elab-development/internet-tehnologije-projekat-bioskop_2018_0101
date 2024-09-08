@@ -26,9 +26,8 @@ const RegisterForm = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/register', formData);
       
-      const token = response.data.access_token;
-      sessionStorage.setItem('auth_token', token);  
-      navigate('/projekcije');
+      
+      navigate('/login');
     } catch (err) {
       setError('Registration failed. Please check your input.');
     }
