@@ -12,6 +12,8 @@ const Slider = () => {
   const [movies, setMovies] = useState([]); // State za filmove
   const [loading, setLoading] = useState(true); // State za učitavanje
   const [error, setError] = useState(null); // State za greške
+  const [searchTerm, setSearchTerm] = useState(''); // State za pretragu
+  const [sortOrder, setSortOrder] = useState('desc'); // State za sortiranje
 
   // Funkcije za navigaciju slajderom
   const nextSlide = () => {
@@ -41,6 +43,11 @@ const Slider = () => {
     fetchMovies();
   }, []);
 
+  // Funkcija za filtriranje filmova po nazivu
+  const filteredMovies = movies
+    .filter((movie) => movie.title.toLowerCase().includes(searchTerm.toLowerCase())) // Pretraga po nazivu
+    .sort((a, b) => sortOrder === 'asc' ? a.vote_average - b.vote_average : b.vote_average - a.vote_average); // Sortiranje po oceni
+
   return (
     <div className="slider-container">
       {/* Slajder */}
@@ -56,13 +63,28 @@ const Slider = () => {
         </button>
       </div>
 
+      {/* Pretraga i sortiranje */}
+      <div className="filter-section">
+        <input
+          type="text"
+          placeholder="Pretraži filmove..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <select onChange={(e) => setSortOrder(e.target.value)} className="sort-select">
+          <option value="desc">Sortiraj po oceni: Najviša</option>
+          <option value="asc">Sortiraj po oceni: Najniža</option>
+        </select>
+      </div>
+
       {/* Prikaz filmova */}
       <div className="movies-section">
         <h2>Popularni Filmovi</h2>
         {loading && <p>Učitavanje filmova...</p>}
         {error && <p>{error}</p>}
         <div className="movies-grid">
-          {movies.map((movie) => (
+          {filteredMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
