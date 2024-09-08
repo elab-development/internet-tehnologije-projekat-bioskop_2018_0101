@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useProjekcije from './useProjekcije';
+import ProjekcijaRow from './ProjekcijaRow'; // Uvozimo novu komponentu
 import './AdminProjekcije.css';
 
 const AdminProjekcije = () => {
@@ -70,14 +71,7 @@ const AdminProjekcije = () => {
         </thead>
         <tbody>
           {currentProjekcije.map((projekcija) => (
-            <tr key={projekcija.id}>
-              <td>{projekcija.id}</td>
-              <td>{projekcija.film.naziv}</td>
-              <td>{projekcija.sala.naziv}</td>
-              <td>{projekcija.datum_vreme}</td>
-              <td>{projekcija.cena} RSD</td>
-              <td>{projekcija.broj_slobodnih_mesta}</td>
-            </tr>
+            <ProjekcijaRow key={projekcija.id} projekcija={projekcija} />  // Koristimo reusable komponentu
           ))}
         </tbody>
       </table>
