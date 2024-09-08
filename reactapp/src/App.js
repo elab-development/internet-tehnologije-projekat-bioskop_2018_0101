@@ -6,6 +6,7 @@ import AdminProjekcije from './AdminProjekcije';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegistrationForm';
 import './App.css';
+import DodajProjekciju from './DodajProjekciju';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Slider />} />
           <Route path="/projekcije" element={token ? <AdminProjekcije /> : <Slider />} />
+          <Route path="/dodajProjekciju" element={token ? <DodajProjekciju /> : <Slider />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm setToken={setToken} />} />
         </Routes>
