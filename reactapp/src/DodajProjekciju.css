@@ -1,9 +1,11 @@
 .dodaj-projekciju-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Promenimo u column da stavke idu jedna ispod druge */
     align-items: center;
     height: 100vh;
     background-color: #f5f5f5;
+    justify-content: flex-start; /* Postavi na početak */
+    padding-top: 40px; /* Dodaj padding od vrha */
 }
 
 .dodaj-projekciju-form {
@@ -11,6 +13,7 @@
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Postavi širinu */
 }
 
 h1 {
